@@ -58,6 +58,12 @@ final class Params
     }
 }
 
+$GLOBALS['api_request'] = false;
+function osc_is_api_request()
+{
+    return $GLOBALS['api_request'];
+}
+
 $GLOBALS['filters'] = array();
 function osc_apply_filter($name, $value)
 {
@@ -71,6 +77,7 @@ function setup_page(array $settings, array $params = array()): void
     \mindstellar\analytics\Plugin::$skip = null;
     Params::$values      = $params;
     $GLOBALS['filters']  = array();
+    $GLOBALS['api_request'] = false;
 }
 
 /** Settings over an array, the page checks on or off. */

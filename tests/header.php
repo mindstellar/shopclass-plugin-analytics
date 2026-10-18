@@ -66,10 +66,16 @@ setup(array());
 pin('on when never saved', true, Config::consent());
 pin('empty text falls back to the default', Config::defaultText(), Config::consentText());
 
-harness_section('admin and preview pages');
-setup(array('ga4_id' => 'G-ABCD1234'), true);
-pin('prints nothing', '', printed());
-pin('queues nothing', array(), $GLOBALS['scripts']);
+harness_section('API and preview pages, through the real checks');
+setup_page(array('ga4_id' => 'G-ABCD1234'));
+check('a public page gets the block', strpos(printed(), 'analytics-config') !== false);
+setup_page(array('ga4_id' => 'G-ABCD1234'), array('osc_preview' => '1'));
+pin('preview prints nothing', '', printed());
+pin('preview queues nothing', array(), $GLOBALS['scripts']);
+setup_page(array('ga4_id' => 'G-ABCD1234'));
+$GLOBALS['api_request'] = true;
+pin('API request prints nothing', '', printed());
+pin('API request queues nothing', array(), $GLOBALS['scripts']);
 
 harness_section('pages whose address carries a secret');
 setup_page(array('ga4_id' => 'G-ABCD1234'), array('page' => 'search', 'sPattern' => 'mug'));
@@ -92,5 +98,11 @@ pin('good pixel id', null, Plugin::validatePixel('12345'));
 check('letters refused in pixel id', is_string(Plugin::validatePixel('12a45')));
 check('4 digits refused', is_string(Plugin::validatePixel('1234')));
 check('21 digits refused', is_string(Plugin::validatePixel(str_repeat('1', 21))));
+
+harness_section('admin pages (last: the constant stays defined)');
+define('OC_ADMIN', true);
+setup_page(array('ga4_id' => 'G-ABCD1234'));
+pin('admin prints nothing', '', printed());
+pin('admin queues nothing', array(), $GLOBALS['scripts']);
 
 exit(harness_result());
