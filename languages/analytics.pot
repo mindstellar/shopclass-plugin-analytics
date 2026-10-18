@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Analytics 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/mindstellar/shopclass-plugin-analytics/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: \n"
+
+#: src/Plugin.php:89
+msgid "Accept"
+msgstr ""
+
+#: settings.php:20
+msgid "Analytics"
+msgstr ""
+
+#: index.php:49
+msgid "Analytics needs Shopclass 7.0 or later and is switched off. Update Shopclass to use it."
+msgstr ""
+
+#: settings.php:45
+msgid "Ask visitors before loading a tag"
+msgstr ""
+
+#: settings.php:52
+msgid "Consent bar text"
+msgstr ""
+
+#: src/Plugin.php:90
+msgid "Decline"
+msgstr ""
+
+#: settings.php:37
+msgid "Digits only. Leave empty for none."
+msgstr ""
+
+#: settings.php:27
+msgid "Google Analytics 4 measurement id"
+msgstr ""
+
+#: settings.php:28
+msgid "Looks like G-ABC123XYZ4. Leave empty for none. Google anonymises visitor IP addresses in GA4 by default."
+msgstr ""
+
+#: settings.php:36
+msgid "Meta pixel id"
+msgstr ""
+
+#: settings.php:22
+msgid "Paste an id to turn a tag on. With no id nothing is added to your pages. Events come from your theme; page views work on any theme."
+msgstr ""
+
+#: settings.php:53
+msgid "Shown in the bar. Leave empty for the default text."
+msgstr ""
+
+#: settings.php:46
+msgid "Shows a bar with Accept and Decline. Nothing loads until Accept; Decline is remembered for 180 days. Turn it off only if another tool asks for consent."
+msgstr ""
+
+#: src/Plugin.php:49
+msgid "Use a GA4 measurement id such as G-ABC123XYZ4."
+msgstr ""
+
+#: src/Plugin.php:59
+msgid "Use the numeric Meta pixel id, 5 to 20 digits."
+msgstr ""
+
+#: src/Config.php:61
+msgid "We use analytics cookies to see how the shop is used. Allow them?"
+msgstr ""
