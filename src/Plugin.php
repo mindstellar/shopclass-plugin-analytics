@@ -59,7 +59,13 @@ final class Plugin
             : __('Use the numeric Meta pixel id, 5 to 20 digits.', 'analytics');
     }
 
-    /** True on the admin, API and customiser preview, which never get a tag. */
+    /** Request values that carry a secret: reset and activation codes, listing secrets, mail link tokens. */
+    public const SECRET_PARAMS = array('code', 'secret', 'token');
+
+    /**
+     * True on the admin, API and customiser preview, and on any page whose address carries a
+     * secret, which never get a tag. The filter `analytics_skip` lets a plugin add its own pages.
+     */
     public static function skip(): bool
     {
         if (self::$skip !== null) {
@@ -72,7 +78,16 @@ final class Plugin
             return true;
         }
 
-        return \Params::getParamString('osc_preview') === '1';
+        if (\Params::getParamString('osc_preview') === '1') {
+            return true;
+        }
+        foreach (self::SECRET_PARAMS as $name) {
+            if (\Params::getParamString($name) !== '') {
+                return true;
+            }
+        }
+
+        return function_exists('osc_apply_filter') && (bool) osc_apply_filter('analytics_skip', false);
     }
 
     /**

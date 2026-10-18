@@ -58,6 +58,16 @@
 
   var started = false;
 
+  // The address sent as the page, without values that carry a secret (the server skips such pages too).
+  function pageLocation() {
+    try {
+      var u = new win.URL(win.location.href);
+      ['code', 'secret', 'token'].forEach(function (k) { u.searchParams.delete(k); });
+      u.hash = '';
+      return u.href;
+    } catch (e) { return ''; }
+  }
+
   function send(ev) {
     if (!ev || typeof ev.event !== 'string') return;
     var payload = {};
@@ -78,7 +88,9 @@
         win.gtag = function () { win.dataLayer.push(arguments); };
       }
       win.gtag('js', new Date());
-      win.gtag('config', cfg.ga4);
+      var where = pageLocation();
+      if (where) win.gtag('config', cfg.ga4, { page_location: where });
+      else win.gtag('config', cfg.ga4);
       loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.ga4));
     }
     if (cfg.pixel) {

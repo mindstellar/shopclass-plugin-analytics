@@ -62,7 +62,9 @@ uninstall. Nothing on the server per visitor.
 ## Hooks
 
 Prints one `<script type="application/json" id="analytics-config">` on the `header` hook and queues
-`public/analytics.js`. Nothing on admin, API or `?osc_preview=1` pages.
+`public/analytics.js`. Nothing on admin, API or `?osc_preview=1` pages, nor on a page whose address
+carries a `code`, `secret` or `token` (password reset, account activation, listing edit links, mail
+confirm links). The filter `analytics_skip` (default `false`) lets a plugin skip its own pages.
 
 ## Tests
 

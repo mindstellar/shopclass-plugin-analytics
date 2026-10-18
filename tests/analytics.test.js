@@ -16,7 +16,7 @@ function test(name, fn) {
   try { fn(); console.log('PASS  ' + name); } catch (e) { failed++; console.log('FAIL  ' + name + '\n      ' + e.message); }
 }
 
-function page(config, store, queue) {
+function page(config, store, queue, href) {
   const loaded = [];
   const listeners = {};
   const body = { children: [], appendChild(el) { el.parentNode = body; this.children.push(el); }, removeChild(c) { this.children = this.children.filter((x) => x !== c); } };
@@ -36,6 +36,8 @@ function page(config, store, queue) {
     fbq(...a) { fbqCalls.push(a); },
     localStorage: { getItem: (k) => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = String(v); } },
     addEventListener() {},
+    location: { href: href || 'https://shop.test/' },
+    URL,
   };
   const doc = {
     readyState: 'complete', body, head: { appendChild: (s) => loaded.push(s.src) },
@@ -149,6 +151,12 @@ test('no aisleTrack queue: page views only, no error', () => {
   const p = page(Object.assign({}, cfg, { consent: false }), {}, undefined);
   assert.ok(p.gtagCalls.some((c) => c[0] === 'config'));
   assert.ok(p.fbqCalls.some((c) => c[1] === 'PageView'));
+});
+
+test('page_location drops secret values and keeps the rest', () => {
+  const p = page(Object.assign({}, cfg, { consent: false }), {}, [], 'https://shop.test/confirm?token=abc&code=1&secret=x&q=mug#top');
+  const c = p.gtagCalls.find((x) => x[0] === 'config');
+  assert.strictEqual(c[2].page_location, 'https://shop.test/confirm?q=mug');
 });
 
 test('owner text goes in with textContent, never as markup', () => {

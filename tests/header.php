@@ -71,6 +71,18 @@ setup(array('ga4_id' => 'G-ABCD1234'), true);
 pin('prints nothing', '', printed());
 pin('queues nothing', array(), $GLOBALS['scripts']);
 
+harness_section('pages whose address carries a secret');
+setup_page(array('ga4_id' => 'G-ABCD1234'), array('page' => 'search', 'sPattern' => 'mug'));
+check('a plain page gets the block', strpos(printed(), 'analytics-config') !== false);
+foreach (array('code' => 'a1b2c3', 'secret' => 's3cr3t', 'token' => 'f00d') as $name => $value) {
+    setup_page(array('ga4_id' => 'G-ABCD1234'), array('page' => 'login', $name => $value));
+    pin("nothing with ?$name=", '', printed());
+    pin("no script with ?$name=", array(), $GLOBALS['scripts']);
+}
+setup_page(array('ga4_id' => 'G-ABCD1234'), array('page' => 'custom'));
+$GLOBALS['filters']['analytics_skip'] = static fn ($skip) => true;
+pin('a plugin skips its page through analytics_skip', '', printed());
+
 harness_section('save validation');
 pin('empty GA4 id is fine', null, Plugin::validateGa4(''));
 pin('good GA4 id', null, Plugin::validateGa4(' g-abcd1234 '));

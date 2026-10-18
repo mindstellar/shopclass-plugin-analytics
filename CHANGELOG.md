@@ -7,3 +7,4 @@
 - Shop events from the theme (`aisleTrack`) sent to GA4 and, where Meta has a match, to the pixel.
 - Built-in consent bar, on by default: no tag loads before Accept, Decline is remembered for 180 days.
 - Ids checked on save; admin, API and preview pages never get a tag.
+- Pages whose address carries a reset code, listing secret or mail token never get a tag, and the page address sent to GA4 drops those values.

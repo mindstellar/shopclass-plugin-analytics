@@ -46,6 +46,33 @@ function osc_plugin_url($file)
     return 'https://shop.test/oc-content/plugins/analytics/';
 }
 
+/** The request values skip() reads. */
+final class Params
+{
+    /** @var array<string,string> */
+    public static array $values = array();
+
+    public static function getParamString($name): string
+    {
+        return (string) (self::$values[$name] ?? '');
+    }
+}
+
+$GLOBALS['filters'] = array();
+function osc_apply_filter($name, $value)
+{
+    return isset($GLOBALS['filters'][$name]) ? ($GLOBALS['filters'][$name])($value) : $value;
+}
+
+/** Settings and request values over arrays, with the plugin's own page checks. */
+function setup_page(array $settings, array $params = array()): void
+{
+    setup($settings);
+    \mindstellar\analytics\Plugin::$skip = null;
+    Params::$values      = $params;
+    $GLOBALS['filters']  = array();
+}
+
 /** Settings over an array, the page checks on or off. */
 function setup(array $settings, bool $skip = false): void
 {
