@@ -153,6 +153,40 @@ test('no aisleTrack queue: page views only, no error', () => {
   assert.ok(p.fbqCalls.some((c) => c[1] === 'PageView'));
 });
 
+test('an event in the queue and repeated as aisle:track is sent once', () => {
+  const p = page(Object.assign({}, cfg, { consent: false }), {}, [addToCart]);
+  p.listeners['aisle:track']({ detail: addToCart });
+  assert.strictEqual(p.gtagCalls.filter((c) => c[0] === 'event' && c[1] === 'add_to_cart').length, 1);
+  assert.strictEqual(p.fbqCalls.filter((c) => c[0] === 'track' && c[1] === 'AddToCart').length, 1);
+});
+
+test('config and init carry the owner ids', () => {
+  const p = page(Object.assign({}, cfg, { consent: false }), {});
+  const c = p.gtagCalls.find((x) => x[0] === 'config');
+  assert.strictEqual(c[1], 'G-ABCD1234');
+  const i = p.fbqCalls.find((x) => x[0] === 'init');
+  assert.strictEqual(i[1], '123456');
+});
+
+test('the GA4 id is encoded in the tag address', () => {
+  const p = page({ ga4: 'G-A&B', pixel: '', consent: false }, {});
+  assert.ok(p.loaded.includes('https://www.googletagmanager.com/gtag/js?id=G-A%26B'), p.loaded.join(' '));
+});
+
+test('pixel id only: gtag is never called, even for events', () => {
+  const p = page({ pixel: '123456', ga4: '', consent: false }, {}, [addToCart]);
+  p.listeners['aisle:track']({ detail: { event: 'view_cart', items: [] } });
+  assert.strictEqual(p.gtagCalls.length, 0);
+  assert.ok(p.fbqCalls.some((c) => c[1] === 'AddToCart'));
+});
+
+test('GA4 id only: fbq is never called, even for events', () => {
+  const p = page({ ga4: 'G-ABCD1234', pixel: '', consent: false }, {}, [addToCart]);
+  p.listeners['aisle:track']({ detail: { event: 'purchase', items: [] } });
+  assert.strictEqual(p.fbqCalls.length, 0);
+  assert.ok(p.gtagCalls.some((c) => c[1] === 'purchase'));
+});
+
 test('page_location drops secret values and keeps the rest', () => {
   const p = page(Object.assign({}, cfg, { consent: false }), {}, [], 'https://shop.test/confirm?token=abc&code=1&secret=x&q=mug#top');
   const c = p.gtagCalls.find((x) => x[0] === 'config');
