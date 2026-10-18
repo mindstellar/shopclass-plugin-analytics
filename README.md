@@ -6,6 +6,9 @@ added to a page until you save an id, and no tag loads until the visitor accepts
 Needs Shopclass 7.0 or later. Shop events need a theme that publishes them, such as Aisle. On any
 other theme you get page views only.
 
+![Analytics settings under Settings in the admin](assets/screenshot-1.png)
+![The consent bar on a phone](assets/screenshot-2.png)
+
 ## Install
 
 Plugins, Add new, Analytics, then Install and Activate. Or unzip into `oc-content/plugins/`.
