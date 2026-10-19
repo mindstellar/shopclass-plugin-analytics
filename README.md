@@ -15,7 +15,7 @@ Plugins, Add new, Analytics, then Install and Activate. Or unzip into `oc-conten
 
 ## Settings
 
-Settings, Analytics.
+Settings, Site, Analytics.
 
 - **GA4 measurement id**: `G-` and 4 to 12 letters or digits. Leave empty for none.
 - **Meta pixel id**: 5 to 20 digits. Leave empty for none.

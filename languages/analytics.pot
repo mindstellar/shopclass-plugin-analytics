@@ -8,7 +8,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: \n"
 
-#: src/Plugin.php:89
+#: src/Plugin.php:104
 msgid "Accept"
 msgstr ""
 
@@ -20,43 +20,43 @@ msgstr ""
 msgid "Analytics needs Shopclass 7.0 or later and is switched off. Update Shopclass to use it."
 msgstr ""
 
-#: settings.php:45
+#: settings.php:46
 msgid "Ask visitors before loading a tag"
 msgstr ""
 
-#: settings.php:52
+#: settings.php:53
 msgid "Consent bar text"
 msgstr ""
 
-#: src/Plugin.php:90
+#: src/Plugin.php:105
 msgid "Decline"
 msgstr ""
 
-#: settings.php:37
+#: settings.php:38
 msgid "Digits only. Leave empty for none."
 msgstr ""
 
-#: settings.php:27
+#: settings.php:28
 msgid "Google Analytics 4 measurement id"
 msgstr ""
 
-#: settings.php:28
+#: settings.php:29
 msgid "Looks like G-ABC123XYZ4. Leave empty for none. Google anonymises visitor IP addresses in GA4 by default."
 msgstr ""
 
-#: settings.php:36
+#: settings.php:37
 msgid "Meta pixel id"
 msgstr ""
 
-#: settings.php:22
+#: settings.php:23
 msgid "Paste an id to turn a tag on. With no id nothing is added to your pages. Events come from your theme; page views work on any theme."
 msgstr ""
 
-#: settings.php:53
+#: settings.php:54
 msgid "Shown in the bar. Leave empty for the default text."
 msgstr ""
 
-#: settings.php:46
+#: settings.php:47
 msgid "Shows a bar with Accept and Decline. Nothing loads until Accept; Decline is remembered for 180 days. Turn it off only if another tool asks for consent."
 msgstr ""
 
