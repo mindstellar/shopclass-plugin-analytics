@@ -19,7 +19,7 @@ use mindstellar\analytics\Plugin;
 return array(
     'title'  => __('Analytics', 'analytics'),
     'menu'   => 'settings',
-    'group'  => 'site',
+    'group'  => 'general',
     'intro'  => __('Paste an id to turn a tag on. With no id nothing is added to your pages. Events come from your theme; page views work on any theme.', 'analytics'),
     'fields' => array(
         array(
