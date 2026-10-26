@@ -36,7 +36,7 @@ Adds Google Analytics 4 and Meta Pixel to a Shopclass site, with a built-in cons
 - After Accept, the plugin sends page views, product ids, names, prices, quantities, order totals and search terms to Google (`googletagmanager.com`) and Meta (`connect.facebook.net`).
 - Nothing is printed on admin, API or `?osc_preview=1` pages, or on pages whose address has a `code`, `secret` or `token` (password reset, activation, listing edit and mail confirm links).
 
-Shop events need a theme that publishes them, such as Aisle. The theme publishes GA4-named events to `window.aisleTrack` and to the `aisle:track` event on `document`. GA4 gets each one under its own name. The pixel gets these:
+Shop events need ShopClass 7.1, which is not released yet, and a theme that publishes them. Aisle, the shop theme coming with 7.1, does. The theme publishes GA4-named events to `window.aisleTrack` and to the `aisle:track` event on `document`. GA4 gets each one under its own name. The pixel gets these:
 
 | Theme event | Meta event |
 | --- | --- |
@@ -50,7 +50,7 @@ Shop events need a theme that publishes them, such as Aisle. The theme publishes
 
 ## Notes / limits
 
-- On other themes you get page views only.
+- On ShopClass 7.0, and on themes that do not publish shop events, you get page views only.
 - The tags set their own cookies after Accept.
 - The bar is a plain opt-in, not legal advice. Check what your market requires and say so in your privacy page.
 - The plugin stores four preferences (the two ids, bar on or off, bar text). Uninstall removes them. Nothing is stored per visitor on the server.

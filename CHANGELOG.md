@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+### Changed
+- README and description say shop events need ShopClass 7.1.
+
 ## 0.1.0
 
 ### New
