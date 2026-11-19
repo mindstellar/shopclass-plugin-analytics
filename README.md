@@ -2,7 +2,7 @@
 
 Adds Google Analytics 4 and Meta Pixel to a Shopclass site, with a built-in consent bar. Nothing is added to a page until you save an id, and no tag loads until the visitor accepts.
 
-![Analytics settings under Settings in the admin](assets/screenshot-1.png)
+![Analytics settings in the admin](assets/screenshot-1.png)
 ![The consent bar on a phone](assets/screenshot-2.png)
 
 ## Requirements
@@ -19,7 +19,7 @@ Adds Google Analytics 4 and Meta Pixel to a Shopclass site, with a built-in cons
 
 ## Set up
 
-1. Open Settings → General → Analytics.
+1. Open Plugins → Analytics → Settings (Plugins → Analytics on Shopclass 7.0).
 2. Enter the **Google Analytics 4 measurement id**. It looks like `G-ABC123XYZ4`: `G-` plus 4 to 12 letters or digits.
 3. Enter the **Meta pixel id**: 5 to 20 digits. Leave a field empty to skip that tag.
 4. Keep **Ask visitors before loading a tag** on, unless another tool already asks for consent.
