@@ -3,7 +3,7 @@
 Plugin Name: Analytics
 Plugin URI: https://github.com/mindstellar/shopclass-plugin-analytics
 Description: Google Analytics 4 and Meta Pixel with a built-in consent bar, and shop events from 7.1. Nothing loads until you add an id and the visitor accepts.
-Version: 0.1.1
+Version: 0.1.2
 Author: Navjot Tomer (Mindstellar)
 Author URI: https://mindstellar.com
 Short Name: analytics

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+### Changed
+- Admin pages are under Plugins → Analytics.
+
 ## 0.1.1
 
 ### Changed
